@@ -140,3 +140,5 @@ local.properties
 .worksheet
 
 **/string_white_sdk_config.xml
+sdk/src/main/.DS_Store
+.DS_Store
