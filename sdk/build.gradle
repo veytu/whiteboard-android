@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.netless-io'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    namespace = "com.herewhite.sdk"
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 20
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -17,11 +16,19 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
         debug {
-            testCoverageEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        envTest {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        envUat {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -36,37 +43,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    api 'com.google.code.gson:gson:2.10.1'
+    api 'com.squareup.okhttp3:okhttp:4.11.0'
     api 'com.github.netless-io:DSBridge-Android:nl_dsb_v3.0.4'
-
-    implementation "androidx.annotation:annotation:1.1.0"
-    testImplementation 'org.json:json:20180130'
-    testImplementation "junit:junit:${rootProject.jUnitVersion}"
-    testImplementation "androidx.test:core:${rootProject.testCoreVersion}"
-    testImplementation 'org.mockito:mockito-core:1.10.19'
-    androidTestImplementation "androidx.test.ext:junit:${rootProject.extJUnitVersion}"
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    failOnError false
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
-}
-
-// build a jar with javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
+    api "androidx.annotation:annotation:1.1.0"
 }
