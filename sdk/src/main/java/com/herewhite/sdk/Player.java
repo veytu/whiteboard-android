@@ -53,7 +53,7 @@ public class Player extends Displayer {
      */
     Player(String room, JsBridgeInterface bridge, int densityDpi) {
         super(room, bridge, densityDpi);
-        syncPlayerState = new SyncDisplayerState(PlayerState.class, true);
+        syncPlayerState = new SyncDisplayerState<PlayerState>(PlayerState.class, true);
         syncPlayerState.setListener(localPlayStateListener);
     }
     /// @endcond
