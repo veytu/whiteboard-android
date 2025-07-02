@@ -25,4 +25,9 @@ public interface RoomDelegate {
     void fireRoomStateChanged(String valueOf);
 
     void fireCatchErrorWhenAppendFrame(long userId, Exception e);
+
+    /**
+     * 收到了h5函数调用
+     */
+    void receiveTalkActiveInfo(String args);
 }
