@@ -98,13 +98,6 @@ public class RoomJsInterfaceImpl {
     }
 
     @JavascriptInterface
-    public void receiveTalkActiveInfo(String args) {
-        if (room != null) {
-            room.receiveTalkActiveInfo(args);
-        }
-    }
-
-    @JavascriptInterface
     public void fireCatchErrorWhenAppendFrame(Object args) {
         if (room != null) {
             new JsCallWrapper(() -> {

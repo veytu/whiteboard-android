@@ -299,14 +299,6 @@ public class Room extends Displayer {
             }
         });
     }
-
-    /**
-     * 发送消息到talkActive
-     */
-    public void postMessageToTalkActive(String data) {
-        bridge.callHandler("room.postMessageToTalkActive", new Object[]{data}, null);
-    }
-
     //region image
 
     /**
@@ -1573,14 +1565,6 @@ public class Room extends Displayer {
         @Override
         public void fireRoomStateChanged(String stateJSON) {
             syncRoomState.syncDisplayerState(stateJSON);
-        }
-        @Override
-        public void receiveTalkActiveInfo(String args) {
-            post(() -> {
-                if (roomListener != null) {
-                    roomListener.receiveTalkActiveInfo(args);
-                }
-            });
         }
     }
 }

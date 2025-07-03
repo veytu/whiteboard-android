@@ -66,9 +66,4 @@ public interface RoomListener {
      * @param error  错误原因。
      */
     void onCatchErrorWhenAppendFrame(long userId, Exception error);
-
-    /**
-     * 收到了h5函数调用
-     */
-    void receiveTalkActiveInfo(String args);
 }
