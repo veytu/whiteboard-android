@@ -1,4 +1,32 @@
 # 版本更新记录
+## [2.16.108] - 2025-08-22
+- 更新 `@netless/appliance-plugin` 至 1.1.21 
+## [2.16.107] - 2025-08-14
+- 更新 `@netless/appliance-plugin` 至 1.1.19
+- 新增 `RoomParams.appliancePluginOptions` 参数，支持 appliancePlugin 参数配置。
+## [2.16.106] - 2025-08-05
+- 更新 `@netless/app-slide` 至 0.2.80, 修复连续两次切换窗口导致PPT冻结状态异常, 无法翻页问题
+## [2.16.105] - 2025-07-08
+- `WindowAppParam.createSlideApp` 支持 customLinks 参数
+- `SlideListener` 新增 `slideOpenUrl` 回调，用于监听 PPT 点击链接事件
+- 更新 `@netless/app-slide` 至 0.2.78
+## [2.16.104] - 2025-06-19
+- 更新 `@netless/window-manager` 至 1.0.5
+  - 修复在最大化状态下，即使没有应用也会错误显示标题栏的问题
+  - 修复初始化过程中因时序问题未获取到聚焦的 appId，导致撤销/重做初始状态异常的问题
+- 更新 `@netless/app-slide` 至 0.2.75。
+  - 修复部分特殊 PPT 中箭头不显示的问题
+  - 修复在多可写用户场景下，新增 PPT 页面无法正常显示画笔的问题（偶现）
+## [2.16.103] - 2025-06-10
+- 更新 `@netless/app-slide` 至 0.2.73, 修复低概率偶现小内存设备上切页不同步问题
+- 更新 `@netless/window-manager` 至 1.0.4
+- 更新 `@netless/appliance-plugin` 至 1.1.17
+## [2.16.102] - 2025-04-14
+- 更新 `@netless/app-slide` 至 0.2.66, 修复 unfreeze 无法恢复动画问题, 修复 点击动画 偶现触发 下一步问题。
+## [2.16.101] - 2025-04-09
+- 更新 `@netless/app-slide` 至 0.2.64, 修复频繁失去焦点导致状态与预期不一致问题。
+## [2.16.100] - 2025-03-19
+- 更新 `white-web-sdk` 至 2.16.53
 ## [2.16.99] - 2025-02-27
 - 更新 `@netless/appliance-plugin` 至 1.1.10, 修复加入房间时未添加白板到布局导致的绘制问题。
 ## [2.16.98] - 2025-02-25

@@ -33,7 +33,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import wendu.dsbridge.special.OnReturnValue;
@@ -42,7 +46,7 @@ import wendu.dsbridge.special.OnReturnValue;
  * `WhiteSdk` 类。
  */
 public class WhiteSdk {
-    private final static String SDK_VERSION = "2.16.99";
+    private final static String SDK_VERSION = "2.16.108";
 
     private final static Gson gson = new Gson();
     private static AudioMixerBridge sAudioMixerBridge;
@@ -181,7 +185,7 @@ public class WhiteSdk {
 
     private void addWebViewTag(JsBridgeInterface bridge, WhiteSdkConfiguration config) {
         try {
-            if (config.isLog() && bridge instanceof WebView) {
+            if (bridge instanceof WebView) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     PackageInfo info = WebView.getCurrentWebViewPackage();
                     if (info != null) {
@@ -294,6 +298,8 @@ public class WhiteSdk {
             }
         });
 
+        addNativeTags(roomParams);
+
         try {
             bridge.callHandler("sdk.joinRoom", new Object[]{roomParams}, (OnReturnValue<String>) roomString -> {
                 JsonObject jsonObject = gson.fromJson(roomString, JsonObject.class);
@@ -317,6 +323,15 @@ public class WhiteSdk {
         } catch (Exception e) {
             roomPromise.catchEx(new SDKError(e.getMessage()));
         }
+    }
+
+    private void addNativeTags(RoomParams roomParams) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+
+            roomParams.addNativeTag("traceId", UUID.randomUUID().toString());
+            roomParams.addNativeTag("time", sdf.format(new Date()));
+        } catch (Exception ignored) {}
     }
 
     /**

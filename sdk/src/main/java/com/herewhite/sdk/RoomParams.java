@@ -1,5 +1,6 @@
 package com.herewhite.sdk;
 
+import com.herewhite.sdk.domain.AppliancePluginOptions;
 import com.herewhite.sdk.domain.CameraBound;
 import com.herewhite.sdk.domain.MemberInformation;
 import com.herewhite.sdk.domain.Region;
@@ -7,6 +8,7 @@ import com.herewhite.sdk.domain.RoomOptimizeOptions;
 import com.herewhite.sdk.domain.WhiteObject;
 import com.herewhite.sdk.domain.WindowParams;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 
@@ -53,12 +55,17 @@ public class RoomParams extends WhiteObject {
      */
     private RoomOptimizeOptions optimizeOptions;
 
+    /**
+     * 白板增强插件参数。
+     */
+    private AppliancePluginOptions appliancePluginOptions;
 
     /**
      * 是否禁止初始化时的回调
      */
     private boolean disableInitialStateCallback = false;
 
+    private HashMap<String, String> __nativeTags = new HashMap<>();
     /**
      * 初始化房间配置参数。
      *
@@ -506,5 +513,20 @@ public class RoomParams extends WhiteObject {
      */
     public void setDisableInitialStateCallback(boolean disableInitialStateCallback) {
         this.disableInitialStateCallback = disableInitialStateCallback;
+    }
+
+    void addNativeTag(String key, String value) {
+        if (key == null || value == null) {
+            return;
+        }
+        __nativeTags.put(key, value);
+    }
+
+    public AppliancePluginOptions getAppliancePluginOptions() {
+        return appliancePluginOptions;
+    }
+
+    public void setAppliancePluginOptions(AppliancePluginOptions appliancePluginOptions) {
+        this.appliancePluginOptions = appliancePluginOptions;
     }
 }
