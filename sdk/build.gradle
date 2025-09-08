@@ -17,24 +17,40 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "LIB_VERSION", '"' + rootProject.ext.moduleVersionConfig.whiteboard.prodVersionName + '"')
+            buildConfigField("int", "LIB_VERSION_CODE", String.valueOf(rootProject.ext.moduleVersionConfig.whiteboard.prodVersionCode))
+            resValue "string", "lib_version", rootProject.ext.moduleVersionConfig.whiteboard.prodVersionName
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "LIB_VERSION", '"' + rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionName + '"')
+            buildConfigField("int", "LIB_VERSION_CODE", String.valueOf(rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionCode))
+            resValue "string", "lib_version", rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionName
         }
         envTest {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "LIB_VERSION", '"' + rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionName + '"')
+            buildConfigField("int", "LIB_VERSION_CODE", String.valueOf(rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionCode))
+            resValue "string", "lib_version", rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionName
         }
         envUat {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "LIB_VERSION", '"' + rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionName + '"')
+            buildConfigField("int", "LIB_VERSION_CODE", String.valueOf(rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionCode))
+            resValue "string", "lib_version", rootProject.ext.moduleVersionConfig.whiteboard.nonProdVersionName
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     tasks.withType(JavaCompile) {
