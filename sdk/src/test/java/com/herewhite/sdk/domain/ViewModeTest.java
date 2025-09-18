@@ -1,4 +1,4 @@
-package com.herewhite.sdk.domain;
+    git push --set-upstream origin testWhiteNewpackage com.herewhite.sdk.domain;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
