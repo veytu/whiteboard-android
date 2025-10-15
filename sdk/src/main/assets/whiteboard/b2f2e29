@@ -1,4 +1,6 @@
  M package.json
+ M src/bridge/Displayer.ts
+ M src/bridge/Room.ts
  M src/bridge/SDK.ts
  M yarn.lock
 ?? src/bridge/WKCustom/
